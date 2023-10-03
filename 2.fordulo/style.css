@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+
+/*logo*/
+
+header h1 {
+    text-align: center;
+    margin: 5vh 0;
+}
+
+span#logo span#yellow {
+    color: rgb(230, 234, 0);
+}
+
+span#logo span#blue {
+    color: rgb(0, 106, 255);
+}
+
+span#logo span.Courier_New {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+span#logo span#red {
+    color: rgba(215, 0, 0, 0.837);
+}
+
+
+/*table*/
+
+main table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main table tr td .black {
+    background-color: brown;
+}
+
+main table tr td .white {
+    background-color: burlywood;
+}
+
+main table tr td .space {
+    width: 3.5vw;
+    height: 3.5vw;
+}
+
+
+/*chess pieces*/
+
+main table tr td .space img {
+    height: 100%;
+    max-width: 100%;
+}
