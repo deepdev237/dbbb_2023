@@ -33,7 +33,7 @@ $('td#1-' + position[3] + ' .space').addClass("piece");
 $('td#1-' + position[4] + ' .space').addClass("piece");
 $('td#1-' + position[5] + ' .space').addClass("piece");
 $('td#1-' + position[6] + ' .space').addClass("piece");
-
+$('td#1-' + position[7] + ' .space').addClass("piece");
 
 $('td#12-' + position[0] + ' .space').addClass("piece");
 $('td#12-' + position[1] + ' .space').addClass("piece");
@@ -42,6 +42,7 @@ $('td#12-' + position[3] + ' .space').addClass("piece");
 $('td#12-' + position[4] + ' .space').addClass("piece");
 $('td#12-' + position[5] + ' .space').addClass("piece");
 $('td#12-' + position[6] + ' .space').addClass("piece");
+$('td#12-' + position[7] + ' .space').addClass("piece");
 
 //todo: implement mozgas
 //kiraly: 2 minden iranyba
@@ -56,17 +57,27 @@ function getPieceDatafromElement(e) {
     }
 }
 
-function GetPieceByCoords(x, y) {
-    
+function GetSpaceByCoords(x, y) {
+    return $('.space[data-x=' + x + '][data-y=' + y + ']');
 }
 
 $(".piece img").on( "click", function() {
     let data = getPieceDatafromElement(this);
     
-    console.log(data.y);
+    for (let i = 1; i < 2; i++) {
+        let coords = {x : data.x, y : (data.y + 1)}
+        let space = GetSpaceByCoords(coords.x, coords.y)
+        let circle = $(space).find(".circle");
+        circle.show();
+        //console.log(circle);
+        console.log($(space).data("y"));
+    }
+
+    console.log(data.x);
 });
 
-//fontos: azonositas kene a babuknak ;
-//hogy tudjuk oket hasznalni itt :)
-//talan ezzel lehetne: https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+window.onload = function() {
+    $(".circle").hide(); //hide circles on start
+}
+
 //sakk genyok mozgasa: https://hu.wikipedia.org/wiki/Sakk
