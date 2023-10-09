@@ -1,5 +1,12 @@
 const position = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+//const position = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
+for (let i = 1; i < 8; i++) {
+    $('td#2-' + (i+1) + ' .space').prepend('<img id="d' + i + 'p" data-color="black" data-piece="paraszt" data-x="' + i + '" data-y="1" src="chess_pieces/Chess_pdt45.svg" alt="d' + i + 'p">')
+    $('td#11-' + (i+1) + ' .space').prepend('<img id="l' + i + 'p" data-color="white" data-piece="paraszt" data-x="' + i + '" data-y="10" src="chess_pieces/Chess_plt45.svg" alt="d' + i + 'p">')
+}
+
+/*
 for (let x in position) {
     $('td#2-' + position[x] + ' .space').prepend('<img id="d' + x + 'p" data-color="black" data-piece="paraszt" data-x="' + x + '" data-y="1" src="chess_pieces/Chess_pdt45.svg" alt="d' + x + 'p">')
     $('td#11-' + position[x] + ' .space').prepend('<img id="l' + x + 'p" data-color="white" data-piece="paraszt" data-x="' + x + '" data-y="10" src="chess_pieces/Chess_plt45.svg" alt="d' + x + 'p">')
@@ -7,6 +14,7 @@ for (let x in position) {
     $('td#2-' + position[x] + ' .space').addClass("piece");
     $('td#11-' + position[x] + ' .space').addClass("piece");
 }
+*/
 
 $('td#1-' + position[0] + ' .space').prepend('<img id="rd0" data-color="black" data-piece="bastya" data-x="0" data-y="0" src="chess_pieces/Chess_rdt45.svg" alt="rd0">');
 $('td#1-' + position[1] + ' .space').prepend('<img id="nd1" data-color="black" data-piece="huszar" data-x="1" data-y="0" src="chess_pieces/Chess_ndt45.svg" alt="nd1">');
