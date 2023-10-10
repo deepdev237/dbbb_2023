@@ -40,11 +40,11 @@ main table {
     margin-right: auto;
 }
 
-main table tr td .black {
+main table tr td .brown {
     background-color: brown;
 }
 
-main table tr td .white {
+main table tr td .burlywood {
     background-color: burlywood;
 }
 
