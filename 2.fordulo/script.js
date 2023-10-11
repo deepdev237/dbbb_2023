@@ -1,6 +1,6 @@
 for (let i = 1; i < 9; i++) {
-    $('td#2-' + i + ' .space').prepend('<img id="d' + i + 'p" class="black paraszt" src="chess_pieces/Chess_pdt45.svg" alt="d' + i + 'p">')
-    $('td#11-' + i + ' .space').prepend('<img id="l' + i + 'p" class="white paraszt" src="chess_pieces/Chess_plt45.svg" alt="d' + i + 'p">')
+    $('td#2-' + i + ' .space').prepend('<img id="d' + i + 'p" class="black gyalog" src="chess_pieces/Chess_pdt45.svg" alt="d' + i + 'p">')
+    $('td#11-' + i + ' .space').prepend('<img id="l' + i + 'p" class="white gyalog" src="chess_pieces/Chess_plt45.svg" alt="d' + i + 'p">')
 }
 
 $('td#1-1 .space').prepend('<img id="rd0" class="black bastya" src="chess_pieces/Chess_rdt45.svg" alt="rd0">');
@@ -35,7 +35,9 @@ function getSpaceByID(id) {
 
 let currentPlayer = "black";
 let selectedPiece = "";
+let canMove = true;
 let clickables = [];
+let knockables = [];
 
 function resetClickables(fullReset) {
     clickables.forEach(element => {
@@ -45,17 +47,130 @@ function resetClickables(fullReset) {
     if (fullReset === true) { selectedPiece = "";}
 }
 
+function opposingColor() {
+    //playerSpeed = PlayerControls["shift"].toggle == true ? 2 : PlayerControls["space"].toggle == true ? 0.5 : 1;
+    //return currentPlayer == "black" ? "white" : currentPlayer == "white" ? "black" : ""
+    if (currentPlayer === "black") {
+        return "white";
+    } else {
+        return "black";
+    }
+}
+
+function getMovement(x, y, i, direction) {
+    let new_x = x;
+    let new_y = y;
+
+    if (direction === "leftup") {
+        x = x - 1
+        y = y - 1
+    } else if (direction === "left") {
+        y = y - 1
+    } else if (direction === "leftdown") {
+        x = x + 1
+        y = y - 1
+    } else if (direction === "up") {
+        x = x - 1
+    } else if (direction === "down") {
+        x = x + 1
+    } else if (direction === "rightup") {
+        x = x - 1
+        y = y + 1
+    } else if (direction === "right") {
+        y = y + 1
+    } else if (direction === "rightdown") {
+        x = x + 1
+        y = y + 1
+    }
+
+    return [new_x, new_y];
+}
+
+/*
+const moves = {
+    "kiraly" : {
+        "x" : 1,
+        "y" : 1
+    },
+    "vezer" : {
+        "x" : 10,
+        "y" : 10
+    },
+    "futo" : {
+        "x" : 4,
+        "y" : 4
+    },
+    "bastya" : {
+        "x" : 12,
+        "y" : 12
+    },
+    "huszar" : {
+        "x" : 0,
+        "y" : 3
+    },
+    "gyalog" : {
+        "x" : 0,
+        "y" : 3
+    },
+}
+*/
+
+function updateClickables(td, coords) {
+    let img = $(td).find("img");
+    let img_class = $(img).attr("class");
+    let class_split = img_class.split(" ");
+    let piece = class_split[1];
+    if (piece == "gyalog") {
+        for (let i = 0; i < 3; i++) {
+            let clickableCoords = {};
+
+            if (currentPlayer == "black") {
+                clickableCoords = {x : coords.x, y : (coords.y + (i+1))}
+            } else {
+                clickableCoords = {x : coords.x, y : (coords.y - (i+1))}
+            }
+            
+            let td = GetSpaceByCoords(clickableCoords.y, clickableCoords.x) //td
+            let img = $(td).closest('img');
+            let circle = $(td).find('.circle');
+            let knockable = $(td).find('.knockable');
+            //console.log(td);
+            //console.log(img);
+            if (class_split[0] == opposingColor()) { //piece can be knocked down (knockable)
+                console.log(img);
+                knockables.push(knockable);
+                td.addClass("knockable");
+                circle.hide();
+                knockable.show();
+                
+            } else {
+
+                clickables.push(circle);
+                knockable.hide();
+                circle.show();
+                
+            }
+        }
+    }
+    
+}
+
 function selectPiece(id) {
     if (selectedPiece === id) {return;} //if the piece is already selected, do nothing
     
     selectedPiece = id;
 
-    let space =  getSpaceByID(id);
-    let id_split = ($(space).attr("id")).split('-'); //get x, y from id
+    let td =  getSpaceByID(id);
+    let id_split = ($(td).attr("id")).split('-'); //get x, y from id
     let coords = {y : parseInt(id_split[0]), x : parseInt(id_split[1])}
 
     resetClickables()
 
+    updateClickables(td, coords)
+
+    canMove = false;
+
+    /*
     if (currentPlayer === "black") {
         for (let i = 0; i < 2; i++) {
             let clickableCoords = {x : coords.x, y : (coords.y + (i+1))}
@@ -89,8 +204,7 @@ function selectPiece(id) {
             }
         }
     }
-
-    
+    */
 }
 
 function movePiece(whereToID) {
@@ -103,16 +217,17 @@ function movePiece(whereToID) {
     $(img).appendTo(spaceToMove);
 
     resetClickables(true);
+    canMove = true;
 }
 
 $(".black").on( "click", function() {
-    if (currentPlayer === "black") {
+    if (currentPlayer === "black" && canMove) {
         selectPiece($(this).closest('td').attr("id"));
         currentPlayer = "white";
     }
 });
 $(".white").on( "click", function() {
-    if (currentPlayer === "white") {
+    if (currentPlayer === "white" && canMove) {
         selectPiece($(this).closest('td').attr("id"));
         currentPlayer = "black";
     }
@@ -125,6 +240,7 @@ $(".circle").on( "click", function() {
 
 window.onload = function() {
     $(".circle").hide(); //hide circles on start
+    $(".knockable").hide(); //hide circles on start
 }
 
 //sakk genyok mozgasa: https://hu.wikipedia.org/wiki/Sakk
