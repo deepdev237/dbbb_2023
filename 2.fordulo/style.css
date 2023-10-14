@@ -40,17 +40,20 @@ main table {
     margin-right: auto;
 }
 
-main table tr td .black {
+main table tr td .brown {
     background-color: brown;
 }
 
-main table tr td .white {
+main table tr td .burlywood {
     background-color: burlywood;
 }
 
 main table tr td .space {
     width: 3.5vw;
     height: 3.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -59,4 +62,18 @@ main table tr td .space {
 main table tr td .space img {
     height: 100%;
     max-width: 100%;
+}
+
+.circle {
+    width: 60%;
+    height: 60%;
+    background-color: rgba(45, 252, 45, 0.712);
+    border-radius: 50%;
+}
+
+.knockable {
+    width: 60%;
+    height: 60%;
+    background-color: rgba(238, 50, 26, 0.712);
+    border-radius: 50%;
 }
