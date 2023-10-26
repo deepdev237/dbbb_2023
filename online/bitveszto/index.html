@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Bitvesztő</title>
+</head>
+<body>
+    <div id="map">
+        <table>
+            <tr>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td></td>
+                <td class="wall"></td>
+            </tr>
+            <tr>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+                <td class="wall"></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <label for="start">Start:</label>
+        <select id="start">
+            <option value="1,1">B</option>
+            <option value="1,8">C</option>
+            <option value="8,1">D</option>
+            <option value="8,8">E</option>
+        </select>
+        <label for="end">End:</label>
+        <select id="end">
+            <option value="1,8">C</option>
+            <option value="8,1">D</option>
+            <option value="8,8">E</option>
+            <option value="1,1">B</option>
+        </select>
+        <button onclick="findPath()">Find Path</button>
+    </div>
+</body>
+</html>
